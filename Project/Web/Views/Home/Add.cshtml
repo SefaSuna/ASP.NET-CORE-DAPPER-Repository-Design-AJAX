@@ -1,0 +1,84 @@
+﻿<div class="container">
+   
+        <form>
+            <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input class="form-control" id="CustomerName">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Surname</label>
+                    <input class="form-control" id="CustomerSurname">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Birthday</label>
+                    <input class="form-control" id="CustomerBirthday">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input class="form-control" id="PhoneNumber">
+                </div>
+            </div>
+            <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Mail Address</label>
+                <input class="form-control" id="MailAddress">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Registration Date</label>
+                <input class="form-control" id="RegistrationDate">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <input class="form-control" id="Gender">
+                </div>
+            <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <input class="form-control" id="Status">
+            </div>
+           
+            </div>
+            </div>
+        <button type="submit" href="home/Index" id="btnGonder" class="btn btn-primary">Submit</button>
+        
+        <a href="/home/Index" class="bg-danger">
+            <input type="button" class="btn btn-danger" value="Back To Home Page">
+        </a>
+        </form>
+</div>
+
+
+<script src="~/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="~/jquery/jquery.slim.js"></script>
+<script src="~/jquery/jquery.slim.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnGonder").click(function () {
+
+            
+           var customer = {
+                CustomerName: $("#CustomerName").val(),
+                CustomerSurname: $("#CustomerSurname").val(),
+                CustomerBirthday: $("#CustomerBirthday").val(),
+                PhoneNumber: $("#PhoneNumber").val(),
+                MailAddress: $("#MailAddress").val(),
+                RegistrationDate: $("#RegistrationDate").val(),
+                Gender: $("#Gender").val(),
+                Status: $("#Status").val(),
+            };
+          
+            $.ajax({
+               url: '@Url.Action("Add", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                data: customer,
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    });
+</script>
